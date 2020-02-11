@@ -1,0 +1,48 @@
+<ng-container>
+
+	<!--#region LABEL-->
+<!--	<etz-label [forId]="id" [label]="label"-->
+<!--	           [tooltip]="tooltip"-->
+<!--	           [ngStyle]="labelStyle">-->
+<!--	</etz-label>-->
+	<etz-label [forId]="id" [label]="label"
+	           [ngStyle]="labelStyle">
+	</etz-label>
+	<!--#endregion-->
+
+	<!--#region CONTROL-->
+	<div class="etz-control"
+	     [ngStyle]="controlStyle">
+		<div>
+			<!--suppress HtmlFormInputWithoutLabel -->
+			<input class="form-control feedback-control"
+			       [class.image-feedback]="imageFeedback"
+			       [class.text-right]="maskType === 'currency' || maskType === 'percent' || maskType === 'number' || inputType === 'number'"
+			       [ngClass]="inputSize != null ? 'form-control-' + inputSize : null"
+			       [readonly]="readonly"
+			       [id]="id"
+			       [name]="inputName"
+			       [title]="inputTitle != null ? inputTitle : ''"
+			       [autocomplete]="inputAutocomplete"
+			       [disabled]="isDisabled"
+			       (blur)="markAsTouched()"
+			       (input)="onInput($event)"
+			       #inputElement>
+		</div>
+
+		<ng-container *ngIf="messages != null; else outerValidationMessages">
+			<div class="etz-validation-messages-container">
+				<div class="etz-validation-messages"
+				     etzMessages [messages]="messages">
+				</div>
+			</div>
+		</ng-container>
+
+		<ng-template #outerValidationMessages>
+			<ng-content select="[slot=validation-messages]"></ng-content>
+		</ng-template>
+
+	</div>
+	<!--#endregion-->
+
+</ng-container>

@@ -1,0 +1,67 @@
+etz-label {
+
+    // Estilo base de label
+    .control-label {
+        margin: 0.6rem 1rem 0 0;
+        font-size: 1rem;
+        font-weight: bold;
+
+        // Asterisco para flag required
+        &.required:after {
+            content: '*';
+            margin-left: 5px;
+            color: #EA2422;
+            display: inline;
+        }
+    }
+
+    .label-sm {
+        font-size: 0.875rem;
+    }
+
+    .label-md {
+        font-size: 1rem;
+    }
+
+    .label-lg {
+        font-size: 1.25rem;
+    }
+}
+
+// REVIEW [CSS 4.0] The following should work with CSS 4.0, removing the need for "required" input binding.
+//etz-label:has(+ input[required]) {
+//
+//    // Asterisco para controles com validador "required"
+//    .control-label:after {
+//
+//        content: '*';
+//        margin-left: 5px;
+//        color: $btn-danger-color;
+//        display: inline;
+//    }
+//}
+
+.etz-component[required] {
+
+    etz-label {
+
+        // Asterisco para controles com validador "required"
+        .control-label:after {
+
+            content: '*';
+            margin-left: 5px;
+            color: #EA2422;
+            display: inline;
+        }
+    }
+}
+
+.etz-component.etz-horizontal {
+
+    etz-label {
+
+        .control-label {
+            margin-top: 0.6rem;
+        }
+    }
+}

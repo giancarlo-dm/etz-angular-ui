@@ -1,0 +1,29 @@
+<div class="m-3">
+	<h3>Basic Input</h3>
+	<etz-input label="Basic" required
+	           [imageFeedback]="true"
+	           [formControl]="myControl"
+	           [messages]="{'required': 'Hello is required!'}"></etz-input>
+	<pre>Model Value: {{myControl.value}}</pre>
+</div>
+
+<div class="m-3">
+	<h3>Currency Input</h3>
+	<etz-input label="Currency" maskType="currency"
+	           [formControl]="currencyControl"></etz-input>
+	<pre>Model Value: {{currencyControl.value}}</pre>
+</div>
+
+<div class="m-3">
+	<h3>Percent Input</h3>
+	<etz-input label="Percent" maskType="percent"
+	           [formControl]="percentControl"></etz-input>
+	<pre>Model Value: {{percentControl.value}}</pre>
+</div>
+
+<div class="m-3">
+	<h3>Integer Mask Input</h3>
+	<etz-input label="Percent" maskType="number"
+	           [formControl]="numberControl"></etz-input>
+	<pre>Model Value: {{numberControl.value}}</pre>
+</div>

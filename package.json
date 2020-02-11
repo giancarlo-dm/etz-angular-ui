@@ -1,0 +1,69 @@
+{
+    "name": "@enterprize/angular-ui-app",
+    "version": "1.0.0",
+    "description": "Provides a reusable and easy to consume and customize UI toolkit based on Bootstrap 4 and Font Awesome 5.",
+    "author": "Giancarlo Dalle Mole",
+    "license": "MIT",
+    "funding": {
+        "url": "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8KT6SPVB84XLY&source=url"
+    },
+    "scripts": {
+        "ng": "ng",
+        "start": "ng serve",
+        "build": "ng build",
+        "test": "ng test",
+        "lint": "ng lint",
+        "e2e": "ng e2e"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/giancarlo-dm/etz-angular-ui"
+    },
+    "keywords": [
+        "UI",
+        "Toolkit",
+        "Angular",
+        "Bootstrap",
+        "Components",
+        "Input",
+        "Currency",
+        "Percentage",
+        "Mask",
+        "Label",
+        "Validation",
+        "Messages"
+    ],
+    "bugs": {
+        "url": "https://github.com/giancarlo-dm/etz-angular-ui/issues"
+    },
+    "homepage": "https://github.com/giancarlo-dm/etz-angular-ui#readme",
+    "dependencies": {
+        "@angular/animations": "9.0.0",
+        "@angular/common": "9.0.0",
+        "@angular/compiler": "9.0.0",
+        "@angular/core": "9.0.0",
+        "@angular/forms": "9.0.0",
+        "@angular/platform-browser": "9.0.0",
+        "@angular/platform-browser-dynamic": "9.0.0",
+        "@angular/router": "9.0.0",
+        "@enterprize/exceptions": "1.0.2",
+        "@enterprize/string-formatter": "1.0.0",
+        "@fortawesome/fontawesome-free": "5.12.1",
+        "bignumber.js": "9.0.0",
+        "bootstrap": "4.4.1",
+        "ng-packagr": "^9.0.0",
+        "rxjs": "6.5.4",
+        "tslib": "1.10.0",
+        "zone.js": "0.10.2"
+    },
+    "devDependencies": {
+        "@angular-devkit/build-angular": "0.900.1",
+        "@angular-devkit/build-ng-packagr": "0.900.1",
+        "@angular/cli": "9.0.1",
+        "@angular/compiler-cli": "9.0.0",
+        "@angular/language-service": "9.0.0",
+        "@types/node": "12.11.1",
+        "ts-node": "8.3.0",
+        "typescript": "3.7.5"
+    }
+}

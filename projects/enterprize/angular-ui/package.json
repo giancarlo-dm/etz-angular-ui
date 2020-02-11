@@ -1,0 +1,44 @@
+{
+    "name": "@enterprize/angular-ui",
+    "version": "1.0.0",
+    "description": "Provides a reusable and easy to consume and customize UI toolkit based on Bootstrap 4 and Font Awesome 5.",
+    "author": "Giancarlo Dalle Mole",
+    "license": "MIT",
+    "funding": {
+        "url": "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8KT6SPVB84XLY&source=url"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/giancarlo-dm/etz-angular-ui"
+    },
+    "keywords": [
+        "UI",
+        "Toolkit",
+        "Angular",
+        "Bootstrap",
+        "Components",
+        "Input",
+        "Currency",
+        "Percentage",
+        "Mask",
+        "Label",
+        "Validation",
+        "Messages"
+    ],
+    "bugs": {
+        "url": "https://github.com/giancarlo-dm/etz-angular-ui/issues"
+    },
+    "homepage": "https://github.com/giancarlo-dm/etz-angular-ui#readme",
+    "dependencies": {
+        "@enterprize/exceptions": "^1.0.2",
+        "@enterprize/string-formatter": "^1.0.0"
+    },
+    "peerDependencies": {
+        "@angular/common": "^9.0.0",
+        "@angular/core": "^9.0.0",
+        "@fortawesome/fontawesome-free": "^5.12.1",
+        "bignumber.js": "^9.0.0",
+        "bootstrap": "^4.4.1",
+        "tslib": "^1.10.0"
+    }
+}
