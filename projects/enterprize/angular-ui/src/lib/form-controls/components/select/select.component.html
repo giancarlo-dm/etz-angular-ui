@@ -1,0 +1,217 @@
+<ng-template #defaultItemTpl let-description="description">
+    <div>
+        {{description}}
+    </div>
+</ng-template>
+
+<ng-template #defaultActionTpl let-action>
+    <div class="btn-link">
+        <i class="link-color mr-1"
+           [ngClass]="action.icon"></i>
+        {{action.description}}
+    </div>
+</ng-template>
+
+<ng-container>
+
+    <!--#region LABEL-->
+    <etz-label [forId]="id" [label]="label"
+               [tooltip]="tooltip"
+               [ngStyle]="labelStyle">
+    </etz-label>
+    <!--#endregion-->
+
+    <!--#region CONTROL-->
+    <div class="etz-control etz-select-control"
+         [ngStyle]="controlStyle">
+
+        <div>
+            <div #menuReferencePoint>
+                <!--#region BOTÃO DROPDOWN-->
+                <button type="button" class="form-control select-menu-btn feedback-control"
+                        [class.d-flex]="!isOpen"
+                        [id]="id"
+                        [hidden]="isOpen"
+                        [disabled]="isDisabled || readonly"
+                        (keydown.arrowdown)="markAsTouched(); isOpen = !isOpen"
+                        (click)="markAsTouched(); isOpen = !isOpen"
+                        #selectMenuBtn>
+
+                    <!--#region TEMPLATE-->
+                    <span style="white-space: nowrap; overflow: hidden;">
+                        <ng-container *ngIf="selectedItem === nullItem; else itemContainerTpl">
+                            <ng-container *ngTemplateOutlet="defaultItemTpl; context: {$implicit: selectedItem, item: selectedItem.value, description: selectedItem.description, hidden: selectedItem.hidden, disabled: selectedItem.disabled}"></ng-container>
+                        </ng-container>
+                        <ng-template #itemContainerTpl>
+                            <ng-container *ngTemplateOutlet="template != null ? template : defaultItemTpl; context: {$implicit: selectedItem, item: selectedItem.value, description: selectedItem.description, hidden: selectedItem.hidden, disabled: selectedItem.disabled}"></ng-container>
+                        </ng-template>
+                    </span>
+                    <!--#endregion-->
+
+                    <!--#region ÍCONE-->
+                    <span class="ml-1">
+                        <i class="fas fa-caret-down"></i>
+                    </span>
+                    <!--#endregion-->
+
+                </button>
+                <!--#endregion-->
+
+                <!--#region PESQUISA RÁPIDA-->
+                <!--suppress HtmlFormInputWithoutLabel -->
+                <input class="form-control no-feedback" placeholder="Busca rápida"
+                       [hidden]="!isOpen"
+                       [formControl]="searchControl"
+                       (focusin)="searchInput.select()"
+                       (keydown.enter)="$event.preventDefault(); totalItems > 0 && !isTypingInSearch && !isLoadingItems ? selectItem() : null"
+                       (keydown.arrowLeft)="$event.stopImmediatePropagation()"
+                       (keydown.arrowRight)="$event.stopImmediatePropagation()"
+                       #searchInput #etzNavigable>
+                <!--#endregion-->
+            </div>
+
+            <div class="select-menu"
+                 etzFloatElement [origin]="menuReferencePoint" [margin]="2" [placement]="placement"
+                 [resize]="true"
+                 *ngIf="isOpen">
+
+                <!--#region RECENTES-->
+                <div class="content-items pt-2 pb-2"
+                     *ngIf="false">
+                    <div class="item last-selected" *ngFor="let it of [1,2,3]">
+                        <button class="btn btn-item"
+                                type="button">
+                            <ng-container *ngTemplateOutlet="template != null ? template : defaultItemTpl; context: it"></ng-container>
+                        </button>
+                    </div>
+                </div>
+                <!--#endregion-->
+
+                <!--#region CONTROLES DE PAGINAÇÃO PARA MODO PAGINATED_FETCHER-->
+                <div class="list-actions d-flex align-items-center justify-content-between"
+                     *ngIf="sourceType === 'PAGINATED_FETCHER'">
+
+                    <!--#region CONTADOR-->
+                    <div class="item-counter">
+                        <span class="title"></span><span class="desc">{{totalItems}} {{totalItems | i18nPlural:i18n.items}}</span>
+                    </div>
+                    <!--#endregion-->
+
+                    <div class="d-flex">
+
+                        <!--#region PAGINAÇÃO-->
+                        <div class="pagination d-flex align-items-center mr-2">
+                            <span class="title mr-1">Pagina:</span>
+                            <div class="d-flex align-items-center">
+                                <button type="button" class="btn btn-link link-color p-0"
+                                        [disabled]="currentPage <= 1"
+                                        (click)="previousPage()">
+                                    <i class="fas fa-angle-left"></i>
+                                </button>
+                                <strong class="mr-1 ml-1">{{currentPage}} de {{totalPages}}</strong>
+                                <button type="button" class="btn btn-link link-color p-0"
+                                        [disabled]="currentPage >= totalPages"
+                                        (click)="nextPage()">
+                                    <i class="fas fa-angle-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!--#endregion-->
+
+                        <!--#region ATUALIZAR-->
+                        <div class="refresh">
+                            <button type="button" class="btn btn-link link-color p-0"
+                                    (click)="initItems()">
+                                <i class="fas fa-sync"></i>
+                            </button>
+                        </div>
+                        <!--#endregion-->
+                    </div>
+                </div>
+                <!--#endregion-->
+
+                <!--#region BARRA SIMPLES PARA MODO FETCHER-->
+                <div class="list-actions d-flex align-items-center justify-content-between"
+                     *ngIf="sourceType === 'FETCHER'">
+
+                    <!--#region CONTADOR-->
+                    <div class="item-counter">
+                        <span class="title"></span><span class="desc">{{totalItems}} {{totalItems | i18nPlural:i18n.items}}</span>
+                    </div>
+                    <!--#endregion-->
+
+                    <div class="d-flex">
+
+                        <!--#region ATUALIZAR-->
+                        <div class="refresh">
+                            <button type="button" class="btn btn-link link-color p-0"
+                                    (click)="initItems()">
+                                <i class="fas fa-sync"></i>
+                            </button>
+                        </div>
+                        <!--#endregion-->
+                    </div>
+                </div>
+                <!--#endregion-->
+
+                <!--#region ITENS-->
+                <div id="{{defaultId}}-items" class="content-items content-body-items py-1">
+                    <div class="pl-2"
+                         *ngIf="totalItems === 0 && !isLoadingItems">
+                        <i>Sem itens</i>
+                    </div>
+                    <div class="pl-2"
+                         *ngIf="isLoadingItems">
+                        <span><i class="fas fa-circle-notch fa-spin"></i> <i>Carregando...</i></span>
+                    </div>
+                    <ng-container *ngIf="!isLoadingItems && totalItems > 0">
+                        <div class="item"
+                             [class.selected]="item.selected"
+                             [hidden]="item.hidden"
+                             *ngFor="let item of selectItems">
+                            <button type="button" class="btn btn-item"
+                                    [disabled]="item.disabled"
+                                    (click)="selectItem(item)"
+                                    #etzNavigable>
+                                <ng-container *ngIf="item === nullItem; else itemContainerTpl">
+                                    <ng-container *ngTemplateOutlet="defaultItemTpl; context: {$implicit: item, item: item.value, description: item.description, hidden: item.hidden, disabled: item.disabled}"></ng-container>
+                                </ng-container>
+                                <ng-template #itemContainerTpl>
+                                    <ng-container *ngTemplateOutlet="template != null ? template : defaultItemTpl; context: {$implicit: item, item: item.value, description: item.description, hidden: item.hidden, disabled: item.disabled}"></ng-container>
+                                </ng-template>
+                            </button>
+                        </div>
+                    </ng-container>
+                </div>
+                <!--#endregion-->
+
+                <!--#region AÇÕES-->
+                <div class="content-items content-body-items actions py-1"
+                     *ngIf="actions != null && actions.length > 0">
+                    <div class="item"
+                         *ngFor="let action of actions">
+                        <button type="button" class="btn btn-item"
+                                (click)="runAction(action)"
+                                #etzNavigable>
+                            <ng-container *ngTemplateOutlet="actionTemplate != null ? actionTemplate : defaultActionTpl; context: {$implicit: action}"></ng-container>
+                        </button>
+                    </div>
+                </div>
+                <!--#endregion-->
+            </div>
+        </div>
+        <ng-container *ngIf="messages != null; else outerValidationMessages">
+            <div class="etz-validation-messages-container">
+                <div class="etz-validation-messages"
+                     etzMessages [messages]="messages">
+                </div>
+            </div>
+        </ng-container>
+
+        <ng-template #outerValidationMessages>
+            <ng-content select="[slot=validation-messages]"></ng-content>
+        </ng-template>
+    </div>
+    <!--#endregion-->
+</ng-container>

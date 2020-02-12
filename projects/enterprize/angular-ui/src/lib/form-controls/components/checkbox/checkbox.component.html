@@ -1,0 +1,41 @@
+<ng-container>
+
+    <!--#region CONTROL-->
+    <div class="etz-control"
+         [ngStyle]="controlStyle">
+
+        <!--suppress HtmlFormInputWithoutLabel -->
+        <input type="checkbox" hidden
+               [id]="id"
+               [checked]="getModel()"
+               (change)="onCheckboxChange($event)">
+
+        <button type="button" class="btn etz-checkbox-control feedback-control"
+                [class.checked]="getModel()"
+                [disabled]="isDisabled"
+                (click)="setModel()">
+            <span class="checkbox-check"></span>
+        </button>
+
+        <ng-container *ngIf="messages != null; else outerValidationMessages">
+            <div class="etz-validation-messages-container">
+                <div class="etz-validation-messages"
+                     etzMessages [messages]="messages">
+                </div>
+            </div>
+        </ng-container>
+
+        <ng-template #outerValidationMessages>
+            <ng-content select="[slot=validation-messages]"></ng-content>
+        </ng-template>
+
+    </div>
+    <!--#endregion-->
+
+    <!--#region LABEL-->
+    <etz-label [forId]="id" [label]="label"
+               [tooltip]="tooltip"
+               [ngStyle]="labelStyle"></etz-label>
+    <!--#endregion-->
+
+</ng-container>

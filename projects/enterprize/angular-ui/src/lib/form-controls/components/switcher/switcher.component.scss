@@ -1,0 +1,90 @@
+/**
+ * @author Iago Fernando Hoppen
+ * @since 04/06/2019
+ */
+etz-switcher,
+.etz-switcher {
+
+    .etz-switcher-control {
+        border-radius: 0.625rem;
+        width: 2.1875rem;
+        padding: 0.0625rem;
+        transition: background-color, border-color, 0.5s;
+        border: 1px solid #D8D8D8;
+
+        &:hover {
+            background-color: #F7F7F7;
+        }
+
+        &:disabled {
+            cursor: not-allowed;
+            background-color: #EBEBEB;
+
+            &:hover {
+                background-color: #EBEBEB;
+            }
+
+            .switcher-ball {
+                &:before {
+                    background-color: #D8D8D8;
+                    border-color: #D8D8D8;
+                }
+            }
+        }
+
+        &.checked {
+            background-color: #F31447;
+            border-color: #F31447;
+
+            &:focus {
+                box-shadow: 0 0 0 0.2rem lighten(#F31447, 40%);
+            }
+
+            &:disabled {
+                cursor: not-allowed;
+                background-color: darken(#F31447, 5%);
+
+                &:hover,
+                &:focus {
+                    background-color: darken(#F31447, 5%);
+                }
+
+                .switcher-ball {
+                    &:before {
+                        background-color: #F7F7F7;
+                        border-color: #F7F7F7;
+                    }
+                }
+            }
+
+            .switcher-ball {
+
+                &:before {
+                    margin-left: 0.9375rem;
+                    border-color: #F31447;
+                }
+            }
+        }
+
+        .switcher-ball {
+
+            &:before {
+                border-radius: 0.625rem;
+                background-color: #ffffff;
+                border: 0.0625rem solid #D8D8D8;
+                content: '';
+                height: 1rem;
+                width: 1rem;
+                display: block;
+                margin-left: 0;
+                transition: margin-left, 0.5s;
+            }
+        }
+    }
+
+    &.etz-horizontal {
+        .etz-switcher-control {
+            margin-top: 0.6rem;
+        }
+    }
+}

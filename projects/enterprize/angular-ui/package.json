@@ -31,7 +31,9 @@
     "homepage": "https://github.com/giancarlo-dm/etz-angular-ui#readme",
     "dependencies": {
         "@enterprize/exceptions": "^1.0.2",
-        "@enterprize/string-formatter": "^1.0.0"
+        "@enterprize/string-formatter": "^1.0.0",
+        "ngx-mask": "^8.1.7",
+        "normalize-diacritics": "2.3.0"
     },
     "peerDependencies": {
         "@angular/common": "^9.0.0",

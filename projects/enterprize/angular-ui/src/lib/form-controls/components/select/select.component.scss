@@ -1,0 +1,102 @@
+/**
+ * @since 20/03/2019
+ */
+etz-select,
+.etz-select {
+
+    .etz-select-control {
+
+        .select-menu-btn {
+
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .select-menu {
+
+            color: #666666;
+            border: 1px solid #D8D8D8;
+            border-radius: 2px;
+            box-shadow: 0 0 5px 0 #D8D8D8;
+            background-color: #ffffff;
+            position: absolute;
+            margin-top: 2px;
+
+            //#region ITENS DO SELECT
+            .content-items {
+                &.content-body-items {
+                    max-height: 22.87500rem;
+                    overflow: auto;
+                }
+
+                .item {
+
+                    .btn-item {
+
+                        border-radius: 0;
+                        transition: none;
+                        text-align: left;
+                        padding: 3px 15px;
+                        font-size: 0.875rem;
+                        width: 100%;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+
+                        &:hover:not(:disabled) {
+                            background-color: #EBEBEB;
+                        }
+
+                        &:disabled {
+                            text-decoration: line-through;
+                            cursor: not-allowed;
+                        }
+                    }
+
+                    &.selected:not(:hover) {
+                        .btn-item {
+                            color: #ffffff;
+                            background-color: #00AEFF;
+                        }
+                    }
+                }
+            }
+            //#endregion
+
+            //#region BARRA DE AÇÕES
+            .list-actions {
+                border-top: 1px solid #D8D8D8;
+                border-bottom: 1px solid #D8D8D8;
+                background-color: #F7F7F7;
+                padding: 5px 10px;
+
+                .item-counter,
+                .pagination {
+
+                    font-size: 0.8rem;
+
+                    .title {
+                        font-weight: 100;
+                    }
+                }
+                .pagination {
+                    .btn {
+                        max-height: 1.25rem;
+                        .fas {
+                            font-size: 1.25rem;
+                        }
+                    }
+                }
+            }
+            //#endregion
+
+            //#region AÇÕES
+            .actions {
+                border-top: 1px solid #D8D8D8;
+            }
+            //#endregion
+        }
+    }
+}

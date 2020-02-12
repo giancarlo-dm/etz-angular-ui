@@ -5,9 +5,13 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { EtzCoreModule } from "../core/core.module";
 
 import { TooltipComponent } from "./components/tooltip/tooltip.component";
+
+import { FloatElementDirective } from "./directives/float-element.directive";
 import { TooltipDirective } from "./directives/tooltip.directive";
 
 export * from "./components/tooltip/tooltip.component";
+
+export * from "./directives/float-element.directive"
 export * from "./directives/tooltip.directive";
 
 export * from "./services/float-element.service";
@@ -24,10 +28,12 @@ export * from "./services/float-element.service";
         // Components
         TooltipComponent,
         // Directives
+        FloatElementDirective,
         TooltipDirective
     ],
     exports: [
         // Directives
+        FloatElementDirective,
         TooltipDirective
     ],
     entryComponents: [

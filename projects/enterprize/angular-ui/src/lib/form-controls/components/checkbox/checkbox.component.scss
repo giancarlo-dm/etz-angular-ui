@@ -1,0 +1,67 @@
+/**
+ * @since 04/06/2019
+ */
+etz-checkbox,
+.etz-checkbox {
+    .etz-control {
+        max-width: 24px;
+    }
+
+    .etz-checkbox-control {
+        transition: background-color, border-color, 0.3s;
+        border: 1px solid #D8D8D8;
+        padding: 7px;
+
+        &:hover {
+            background-color: #F7F7F7;
+        }
+
+        &:disabled {
+            cursor: not-allowed;
+            background-color: #EBEBEB;
+
+            &:hover {
+                background-color: #EBEBEB;
+            }
+        }
+
+        &.checked {
+            background-color: #F31447;
+            border-color: #F31447;
+
+            &:focus {
+                box-shadow: 0 0 0 0.2rem lighten(#F31447, 40%);
+            }
+
+            &:disabled {
+                cursor: not-allowed;
+                background-color: darken(#F31447, 5%);
+
+                &:hover,
+                &:focus {
+                    background-color: darken(#F31447, 5%);
+                }
+            }
+
+            .checkbox-check {
+                &:before {
+                    content: "";
+                    font-family: "Font Awesome 5 Free", sans-serif;
+                    font-weight: bold;
+                    display: block;
+                    position: absolute;
+                    font-size: 0.625rem;
+                    color: white;
+                    margin-top: -0.4375rem;
+                    margin-left: -0.3125rem;
+                }
+            }
+        }
+    }
+
+    &.etz-horizontal {
+        .etz-checkbox-control {
+            margin-top: 0.6875rem;
+        }
+    }
+}

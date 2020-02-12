@@ -1,0 +1,143 @@
+<div class="datepicker">
+
+    <!--#region LABEL-->
+    <etz-label [forId]="id" [label]="label"
+               [tooltip]="tooltip"
+               [ngStyle]="labelStyle">
+    </etz-label>
+    <!--#endregion-->
+
+    <!--#region CONTROL-->
+    <div class="etz-control"
+         [ngStyle]="controlStyle">
+
+        <div class="input-group" #originField>
+            <!--suppress HtmlFormInputWithoutLabel -->
+            <input type="text" class="form-control feedback-control" placeholder="Data"
+                   [id]="id"
+                   [name]="name"
+                   [mask]="mask"
+                   [autocomplete]="inputAutoComplete"
+                   [disabled]="isDisabled"
+                   [readonly]="readonly"
+                   (blur)="!readonly ? onBlur($event) : null"
+                   (click)="!readonly ? isOpen == false ? openCalendar() : isOpen = false : null"
+                   (input)="onInput($event)"
+                   #inputElement>
+            <div class="input-group-prepend">
+                <button type="button" class="btn btn-default btn-datepicker"
+                        [disabled]="isDisabled || readonly"
+                        (click)="isOpen == false ? openCalendar() : isOpen = false">
+                    <i class="far fa-calendar-alt"></i>
+                </button>
+            </div>
+        </div>
+
+        <ng-container *ngIf="messages != null; else outerValidationMessages">
+            <div class="etz-validation-messages-container">
+                <div class="etz-validation-messages"
+                     etzMessages [messages]="messages">
+                </div>
+            </div>
+        </ng-container>
+
+        <ng-template #outerValidationMessages>
+            <!--suppress HtmlUnknownAttribute -->
+            <ng-content select="[slot=validation-messages]"></ng-content>
+        </ng-template>
+    </div>
+    <!--#endregion-->
+
+    <!--#region MENU-->
+    <div class="datepicker-menu" #datepickerMenu *ngIf="isOpen"
+         etzFloatElement placement="bottom" container="body" [origin]="originField" [margin]="4" [resize]="true">
+        <div class="content-menu">
+
+            <!--#region MÊS ATUAL-->
+            <div class="d-flex align-items-center justify-content-center pt-1 selected-month">
+                <button type="button" class="btn btn-link" (click)="previousMonth()" #etzNavigable>
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="d-flex align-items-center">
+                    <strong>{{monthFormControl.value | etzMonth}}</strong>
+                    <strong class="mx-1">-</strong>
+                    <strong>{{yearFormControl.value}}</strong>
+                </div>
+                <button type="button" class="btn btn-link" (click)="nextMonth()" #etzNavigable>
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <!--#endregion-->
+
+            <!--#region MÊS E ANO-->
+            <div class="d-flex align-items-center pb-2 px-2">
+                <!--suppress HtmlFormInputWithoutLabel -->
+                <select name="month" id="month" class="form-control form-control-sm mr-2"
+                        [formControl]="monthFormControl" #etzNavigable>
+                    <option value="0">Janeiro</option>
+                    <option value="1">Fevereiro</option>
+                    <option value="2">Março</option>
+                    <option value="3">Abril</option>
+                    <option value="4">Maio</option>
+                    <option value="5">Junho</option>
+                    <option value="6">Julho</option>
+                    <option value="7">Agosto</option>
+                    <option value="8">Setembro</option>
+                    <option value="9">Outubro</option>
+                    <option value="10">Novembro</option>
+                    <option value="11">Dezembro</option>
+                </select>
+                <!--suppress HtmlFormInputWithoutLabel -->
+                <input name="year" id="year" type="number" class="form-control form-control-sm"
+                       [formControl]="yearFormControl" #etzNavigable/>
+            </div>
+            <!--#endregion-->
+
+            <!--#region DIAS DA SEMANA-->
+            <div class="week-days">
+                <div class="day">Dom</div>
+                <div class="day">Seg</div>
+                <div class="day">Ter</div>
+                <div class="day">Qua</div>
+                <div class="day">Qui</div>
+                <div class="day">Sex</div>
+                <div class="day">Sáb</div>
+            </div>
+            <!--#endregion-->
+
+        </div>
+
+        <!--#region DIAS DO MÊS-->
+        <div class="days">
+            <!--
+            CLASSES DISPONÍVEIS:
+            next-month = Dias do próximo mês
+            last-month = Dias do mês anterior
+            sunday = Domingo
+            holiday = Feriados
+            selected = Dia selecionado
+            today = Dia de hoje
+            -->
+            <ng-container *ngFor="let dayOfWeek of days">
+                <ng-container *ngFor="let wsDateItem of dayOfWeek">
+
+                    <button type="button" class="day"
+                            (click)="selectDate(wsDateItem)"
+                            [disabled]="wsDateItem.isDisabled"
+                            [class.disabled]="wsDateItem.isDisabled"
+                            [class.last-month]="wsDateItem.isLastMonthDate"
+                            [class.next-month]="wsDateItem.isNextMonthDate"
+                            [class.sunday]="wsDateItem.weekDay === 0"
+                            [class.selected]="wsDateItem.isSelected"
+                            [class.today]="wsDateItem.isToday"
+                            #etzNavigable>
+                        {{wsDateItem.day}}
+                    </button>
+
+                </ng-container>
+            </ng-container>
+        </div>
+        <!--#endregion-->
+    </div>
+    <!--#endregion-->
+</div>

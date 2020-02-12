@@ -105,6 +105,13 @@ export abstract class AbstractFormComponent<T> implements AfterViewInit, Control
     public idChange: EventEmitter<string> = new EventEmitter<string>();
     //#endregion
 
+    //#region Public Attributes
+    /**
+     * Id do componente padrão. Usado para labels e o controle que a label ativa ao ser clicada.
+     */
+    public readonly defaultId: string;
+    //#endregion
+
     //#region Protected Attributes
     /**
      * Referêcia ao {@link Document} do DOM.
@@ -136,10 +143,6 @@ export abstract class AbstractFormComponent<T> implements AfterViewInit, Control
     //#endregion
 
     //#region Private Attributes
-    /**
-     * Id do componente padrão. Usado para labels e o controle que a label ativa ao ser clicada.
-     */
-    private readonly defaultId: string;
     /**
      * Callback a ser invocado em eventos de atualização de valor a partir da UI.
      * @callback
@@ -193,7 +196,7 @@ export abstract class AbstractFormComponent<T> implements AfterViewInit, Control
     //#endregion
 
     //#region Constructor
-    protected constructor(document: Document, elementRef: ElementRef<HTMLElement>,
+    protected constructor(document: any, elementRef: ElementRef<HTMLElement>,
                           injector: Injector, idPrefix: string = "etz-abstract-component") {
 
         // Injetados
