@@ -4,7 +4,7 @@ import {
 } from "@angular/core";
 import { ControlValueAccessor, NgControl } from "@angular/forms";
 
-// import { TooltipOptions } from "../../popovers/common";
+import { TooltipOptions } from "../../popovers/common/tooltip-options.type";
 
 /**
  * Base class of all form controls components. Provides common functionality to components such as
@@ -53,8 +53,8 @@ export abstract class AbstractFormComponent<T> implements AfterViewInit, Control
      * Tooltip para informações de ajuda.
      * @optional
      */
-    // @Input()
-    // public tooltip: TooltipOptions;
+    @Input()
+    public tooltip: TooltipOptions;
     /**
      * @Input
      * Custom style to be applied on the control container html tag. The syntax is the same as in ngStyle

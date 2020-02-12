@@ -8,3 +8,4 @@ export * from "./lib/angular-ui.module";
 export * from "./lib/core/core.module";
 export * from "./lib/form-controls/form-controls.module";
 export * from "./lib/misc/misc.module";
+export * from "./lib/popovers/popovers.module";

@@ -1,8 +1,10 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
+import { EtzCoreModule } from "../core/core.module";
 
-import { MiscModule } from "../misc/misc.module";
+import { EtzMiscModule } from "../misc/misc.module";
+import { EtzPopoversModule } from "../popovers/popovers.module";
 
 import { InputComponent } from "./components/input/input.component";
 
@@ -22,7 +24,9 @@ export * from "./directives/messages.directive";
         CommonModule,
         ReactiveFormsModule,
         // Lib Dependencies
-        MiscModule
+        EtzCoreModule,
+        EtzMiscModule,
+        EtzPopoversModule
     ],
     declarations: [
         // Components

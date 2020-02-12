@@ -1,6 +1,7 @@
 <div class="m-3">
 	<h3>Basic Input</h3>
 	<etz-input label="Basic" required
+	           [tooltip]="{contentText: 'This is a basic tooltip example.'}"
 	           [imageFeedback]="true"
 	           [formControl]="myControl"
 	           [messages]="{'required': 'Hello is required!'}"></etz-input>
@@ -10,13 +11,21 @@
 <div class="m-3">
 	<h3>Currency Input</h3>
 	<etz-input label="Currency" maskType="currency"
+	           [tooltip]="{contentText: 'This is a tooltip with a title and a help link', title: 'This is a title', extraHelp: 'https://www.google.com'}"
 	           [formControl]="currencyControl"></etz-input>
 	<pre>Model Value: {{currencyControl.value}}</pre>
 </div>
 
 <div class="m-3">
 	<h3>Percent Input</h3>
+	<ng-template #percentTooltipTpl>
+		<ul>
+			<li>You can create tooltips with custom content templates.</li>
+			<li>Just needs to use the ng-template and template references (#var)</li>
+		</ul>
+	</ng-template>
 	<etz-input label="Percent" maskType="percent"
+	           [tooltip]="{contentTemplate: percentTooltipTpl}"
 	           [formControl]="percentControl"></etz-input>
 	<pre>Model Value: {{percentControl.value}}</pre>
 </div>

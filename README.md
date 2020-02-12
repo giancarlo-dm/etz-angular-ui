@@ -4,6 +4,10 @@ The Enterprize Angular UI package provides a reusable and easy to consume and cu
 
 # :warning: WORK IN PROGRESSS :warning:
 
+## Development
+
+:warning: We DO NOT use barrel exports (i.e. index.ts) due to issues with ng-packagr (see [#917](https://github.com/ng-packagr/ng-packagr/issues/917)) :warning:
+
 ## Components
 
 ### Misc

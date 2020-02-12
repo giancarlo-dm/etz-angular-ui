@@ -1,0 +1,55 @@
+<ng-template #defaultTemplate>
+    <div class="tooltip-default" [ngStyle]="tooltipStyle">
+
+        <!--#region TÍTULO-->
+        <div class="title"
+             *ngIf="title != null">
+            {{title}}
+        </div>
+        <!--#endregion-->
+
+        <!--#region CONTEÚDO-->
+
+        <div class="body">
+
+            <!--#region CONTENT TEMPLATE-->
+            <ng-container *ngTemplateOutlet="contentTemplate != null ? contentTemplate : defaultContentTemplate"></ng-container>
+            <!--#endregion-->
+
+        </div>
+        <!--#endregion-->
+
+        <!--#region MAIS INFORMAÇÕES-->
+        <div class="more-information text-center"
+             *ngIf="extraHelp != null">
+            <!--suppress HtmlUnknownTarget -->
+            <a href="{{extraHelp}}" target="_blank" class="btn btn-link p-0 link-color">
+                <i class="fas fa-question-circle mr-1"></i>
+                Mais informações
+            </a>
+        </div>
+        <!--#endregion-->
+
+    </div>
+</ng-template>
+
+<ng-template #defaultContentTemplate>
+    {{contentTemplate}}
+    <div class="content-default">
+        <!--#region IMAGEM-->
+        <div class="body-image mr-2 mt-1"
+             *ngIf="contentImage != null">
+            <img [src]="contentImage" width="50" height="50" alt="">
+        </div>
+        <!--#endregion-->
+
+        <!--#region CORPO-->
+        <div class="body-description"
+             *ngIf="contentText != null">{{contentText}}</div>
+        <!--#endregion-->
+    </div>
+</ng-template>
+
+<!--#region TEMPLATE-->
+<ng-container *ngTemplateOutlet="template != null ? template : defaultTemplate"></ng-container>
+<!--#endregion-->

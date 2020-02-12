@@ -1,13 +1,23 @@
 import { NgModule } from "@angular/core";
+
+import { EtzCoreModule } from "./core/core.module";
 import { EtzFormControlsModule } from "./form-controls/form-controls.module";
+import { EtzMiscModule } from "./misc/misc.module";
+import { EtzPopoversModule } from "./popovers/popovers.module";
 
 @NgModule({
     declarations: [],
     imports: [
-        EtzFormControlsModule
+        EtzCoreModule,
+        EtzFormControlsModule,
+        EtzMiscModule,
+        EtzPopoversModule,
     ],
     exports: [
-        EtzFormControlsModule
+        EtzCoreModule,
+        EtzFormControlsModule,
+        EtzMiscModule,
+        EtzPopoversModule,
     ]
 })
 export class AngularUiModule {

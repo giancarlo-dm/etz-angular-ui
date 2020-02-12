@@ -9,12 +9,8 @@ import { ReactiveFormsModule } from "@angular/forms";
         ReactiveFormsModule
     ],
     declarations: [
-
-    ],
-    exports: [
-
     ]
 })
-export class CoreModule {
+export class EtzCoreModule {
 
 }

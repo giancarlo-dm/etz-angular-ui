@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges, ViewEncapsulation } from "@angular/core";
 
-// import { TooltipOptions } from "../../../popovers";
+import { TooltipOptions } from "../../../popovers/common/tooltip-options.type";
 
 /**
  * @Component
@@ -34,8 +34,8 @@ export class LabelComponent implements OnChanges {
      * @Input
      * Texto ou template do tooltip.
      */
-    // @Input()
-    // public tooltip: TooltipOptions;
+    @Input()
+    public tooltip: TooltipOptions;
     /**
      * @Input
      * Flag que indica se é requerido. Em componentes etz-* não é necessário pois irá ser obtido a
@@ -51,10 +51,10 @@ export class LabelComponent implements OnChanges {
      */
     public ngOnChanges(changes: SimpleChanges): void {
 
-        // if (this.tooltip != null) {
-        //     this.tooltip.margin = this.tooltip.margin != null ? this.tooltip.margin : 5;
-        //     this.tooltip.placement = this.tooltip.placement != null ? this.tooltip.placement : "top-right";
-        // }
+        if (this.tooltip != null) {
+            this.tooltip.margin = this.tooltip.margin != null ? this.tooltip.margin : 5;
+            this.tooltip.placement = this.tooltip.placement != null ? this.tooltip.placement : "top-right";
+        }
     }
     //#endregion
 }
